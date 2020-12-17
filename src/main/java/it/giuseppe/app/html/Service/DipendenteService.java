@@ -36,4 +36,9 @@ public class DipendenteService {
 
 	}
 
+	public void modificaDipendente(Dipendente dipendente) {
+		dipendenteRepository.save(dipendente);
+
+	}
+
 }

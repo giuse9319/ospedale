@@ -3,9 +3,9 @@ package it.giuseppe.app.html.Repository;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import it.giuseppe.app.html.Entity.Veicolo;
+import it.giuseppe.app.html.Entity.Turno;
 
 @Repository
-public interface RepositoryVeicolo extends CrudRepository<Veicolo, Long> {
+public interface RepositoryTurno extends CrudRepository<Turno, Long> {
 
 }

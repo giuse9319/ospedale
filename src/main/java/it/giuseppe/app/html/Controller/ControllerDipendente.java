@@ -1,6 +1,7 @@
 package it.giuseppe.app.html.Controller;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.validation.Valid;
 
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -32,8 +34,8 @@ public class ControllerDipendente {
 	}
 
 	@GetMapping("/")
-	public List<Dipendente> listaDipendenti() {
-		return dipendenteService.leggiListaDipendenti();
+	public List<DipendenteDTO> listaDipendenti() {
+		return dipendenteService.leggiListaDipendenti().stream().map(this::convertToDTO).collect(Collectors.toList());
 	}
 
 	@PostMapping("/")
@@ -53,16 +55,16 @@ public class ControllerDipendente {
 
 	}
 
-	/*
-	 * @PutMapping("/{idDipendente}") public void modificaDipendente(@RequestBody
-	 * DipendenteDTO dipendenteDTO) {
-	 * dipendenteService.modificaDipendente(convertToEntity(dipendenteDTO));
-	 * 
-	 * }
-	 */
+	@PutMapping("/{idDipendente}")
+	public void modificaDipendente(@RequestBody DipendenteDTO dipendenteDTO) {
+		dipendenteService.modificaDipendente(convertToEntity(dipendenteDTO));
+	}
+
 	public DipendenteDTO convertToDTO(Dipendente dipendente) {
 
-		return modelMapper.map(dipendente, DipendenteDTO.class);
+		DipendenteDTO dipendenteDTO;
+		dipendenteDTO = modelMapper.map(dipendente, DipendenteDTO.class);
+		return dipendenteDTO;
 	}
 
 	public Dipendente convertToEntity(DipendenteDTO dipendenteDTO) {

@@ -1,6 +1,7 @@
 package it.giuseppe.app.html.Entity;
 
 import java.time.OffsetDateTime;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -24,7 +25,7 @@ public class Turno {
 	Long id;
 
 	@OneToMany
-	private Dipendente dipendente;
+	private List<Dipendente> Dipendente;
 	@ManyToOne
 	private Veicolo veicolo;
 
@@ -48,12 +49,12 @@ public class Turno {
 		this.id = id;
 	}
 
-	public Dipendente getDipendente() {
-		return dipendente;
+	public List<Dipendente> getDipendente() {
+		return Dipendente;
 	}
 
-	public void setDipendente(Dipendente dipendente) {
-		this.dipendente = dipendente;
+	public void setDipendente(List<Dipendente> dipendente) {
+		Dipendente = dipendente;
 	}
 
 	public Veicolo getVeicolo() {
@@ -122,7 +123,7 @@ public class Turno {
 
 	@Override
 	public String toString() {
-		return "Turno [id=" + id + ", dipendente=" + dipendente + ", veicolo=" + veicolo + ", nomeCitta=" + nomeCitta
+		return "Turno [id=" + id + ", Dipendente=" + Dipendente + ", veicolo=" + veicolo + ", nomeCitta=" + nomeCitta
 				+ ", postazione=" + postazione + ", inizioTurno=" + inizioTurno + ", presuntoFineTurno="
 				+ presuntoFineTurno + ", fineTurno=" + fineTurno + ", istanteCreazione=" + istanteCreazione
 				+ ", istanteModifica=" + istanteModifica + "]";
